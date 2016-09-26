@@ -1,0 +1,28 @@
+name       : vsftpd
+version    : 3.0.3
+release    : 1
+source     :
+    - https://security.appspot.com/downloads/vsftpd-3.0.3.tar.gz : 9d4d2bf6e6e2884852ba4e69e157a2cecd68c5a7635d66a3a8cf8d898c955ef7
+license    : GPL-2.0
+component  : system.utils
+summary    : Probably the most secure and fastest FTP server for UNIX-like systems
+description: |
+    Probably the most secure and fastest FTP server for UNIX-like systems
+builddeps  :
+    - libcap2-devel
+setup      : |
+    %patch -p1 < $pkgfiles/0001-Improve-Makefile.patch
+    sed 's:anonymous_enable=YES:anonymous_enable=NO:g' -i vsftpd.conf
+    sed 's:#local_enable:local_enable:g' -i vsftpd.conf
+    sed 's:#write_enable:write_enable:g' -i vsftpd.conf
+    sed 's:/usr/share/empty:/usr/share/vsftpd:g' -i vsftpd.conf.5
+    sed 's:/usr/share/empty:/usr/share/vsftpd:g' -i tunables.c
+build      : |
+    %make
+install    : |
+    %make_install PREFIX=/usr
+    install -dm00644 $installdir/usr/share/vsftpd
+    install -Dm00644 $pkgfiles/vsftpd.service $installdir/%libdir%/systemd/system/vsftpd.service
+    install -Dm00644 $pkgfiles/vsftpd.sysusers $installdir/%libdir%/sysusers.d/vsftpd.conf
+    install -Dm00644 $pkgfiles/vsftpd.tmpfiles $installdir/%libdir%/tmpfiles.d/vsftpd.conf
+    rm -rf $installdir/etc/xinitd.d
