@@ -2,10 +2,10 @@
     <Source>
         <Name>vsftpd</Name>
         <Packager>
-            <Name>Joshua Strobl</Name>
-            <Email>joshua@stroblindustries.com</Email>
+            <Name>Bryan T. Meyers</Name>
+            <Email>bmeyers@datadrake.com</Email>
         </Packager>
-        <License>GPL-2.0</License>
+        <License>GPL-2.0-or-later</License>
         <PartOf>system.utils</PartOf>
         <Summary xml:lang="en">Probably the most secure and fastest FTP server for UNIX-like systems</Summary>
         <Description xml:lang="en">Probably the most secure and fastest FTP server for UNIX-like systems
@@ -23,18 +23,19 @@
             <Path fileType="library">/usr/lib64/systemd/system/vsftpd.service</Path>
             <Path fileType="library">/usr/lib64/sysusers.d/vsftpd.conf</Path>
             <Path fileType="library">/usr/lib64/tmpfiles.d/vsftpd.conf</Path>
-            <Path fileType="executable">/usr/sbin</Path>
-            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="executable">/usr/sbin/vsftpd</Path>
+            <Path fileType="man">/usr/share/man/man5/vsftpd.conf.5</Path>
+            <Path fileType="man">/usr/share/man/man8/vsftpd.8</Path>
             <Path fileType="data">/usr/share/vsftpd</Path>
         </Files>
     </Package>
     <History>
-        <Update release="3">
-            <Date>2016-11-11</Date>
+        <Update release="4">
+            <Date>2018-12-13</Date>
             <Version>3.0.3</Version>
             <Comment>Packaging update</Comment>
-            <Name>Joshua Strobl</Name>
-            <Email>joshua@stroblindustries.com</Email>
+            <Name>Bryan T. Meyers</Name>
+            <Email>bmeyers@datadrake.com</Email>
         </Update>
     </History>
 </PISI>
